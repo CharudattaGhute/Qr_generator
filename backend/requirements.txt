@@ -1,4 +1,5 @@
-Flask==<version>
-Flask-Cors==<version>
-fpdf==<version>
-qrcode==<version>
+Flask==3.0.3
+Flask-Cors==3.1.1
+fpdf==1.7.2
+qrcode==7.3.1
+gunicorn==20.1.0
