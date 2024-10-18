@@ -1,0 +1,4 @@
+Flask==<version>
+Flask-Cors==<version>
+fpdf==<version>
+qrcode==<version>
