@@ -192,4 +192,7 @@ def upload_file():
     return jsonify({"error": "Unknown error occurred"}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Use dynamic port if available, or default to 5000
+    port = int(os.environ.get('PORT', 5000))
+    # Bind to '0.0.0.0' so it can be accessed externally
+    app.run(host='0.0.0.0', port=port, debug=True)
