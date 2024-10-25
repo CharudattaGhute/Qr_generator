@@ -172,12 +172,22 @@ def upload_file():
         return jsonify({"error": "No selected file"}), 400
 
     if file:
+        # Debugging: Check the content of the uploaded file
+        csv_contents = file.read().decode('ISO-8859-1')  # Read the contents for debugging
+        logging.info(f"Contents of uploaded CSV: {csv_contents}")
+        file.seek(0)  # Reset file pointer to the beginning after reading
+
         # Save the uploaded CSV file temporarily
         csv_path = os.path.join('/tmp', file.filename)
         file.save(csv_path)
 
+        # Debugging: Check if the file is saved
+        if not os.path.exists(csv_path):
+            logging.error(f"File not saved correctly at: {csv_path}")
+            return jsonify({"error": "File not saved correctly"}), 500
+
         # Path to WhatsApp icon (modify this as needed)
-        icon_path = '/Users/charudattaghute/Desktop/qrcode/WhatsApp_icon.png'  # Ensure this path is correct
+        icon_path = '/Users/charudattaghute/Desktop/qrcode/backend/WhatsApp_icon.png'  # Ensure this path is correct
 
         # Generate the PDF with the same name as the CSV file
         output_pdf_filename = generate_pdf_from_csv(csv_path, file.filename, icon_path)
@@ -191,8 +201,5 @@ def upload_file():
 
     return jsonify({"error": "Unknown error occurred"}), 500
 
-if __name__ == "__main__":
-    # Use dynamic port if available, or default to 5000
-    port = int(os.environ.get('PORT', 5000))
-    # Bind to '0.0.0.0' so it can be accessed externally
-    app.run(host='0.0.0.0', port=port, debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
