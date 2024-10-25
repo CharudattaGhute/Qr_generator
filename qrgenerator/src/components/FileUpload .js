@@ -25,14 +25,14 @@ const FileUpload = () => {
         "http://127.0.0.1:5000/upload",
         formData,
         {
-          responseType: "arraybuffer", // Set responseType to 'arraybuffer' for binary data
+          responseType: "arraybuffer",
         }
       );
 
       // Create Blob for PDF and set URL
       const pdfBlob = new Blob([response.data], { type: "application/pdf" });
       const url = window.URL.createObjectURL(pdfBlob);
-      setPdfUrl(url); // Save the PDF URL
+      setPdfUrl(url);
 
       // Extract the PDF name from the response headers
       const contentDisposition = response.headers["content-disposition"];
@@ -44,9 +44,9 @@ const FileUpload = () => {
           .split("filename=")[1]
           .replace(/"/g, "")
           .trim();
-        setPdfName(pdfName); // Save the PDF name
+        setPdfName(pdfName);
       } else {
-        setPdfName("generated_qr_code_pdf.pdf"); // Default name if not found
+        setPdfName("generated_qr_code_pdf.pdf");
       }
 
       setMessage("QR Codes generated successfully!");
@@ -64,11 +64,11 @@ const FileUpload = () => {
     if (pdfUrl) {
       const link = document.createElement("a");
       link.href = pdfUrl;
-      link.setAttribute("download", pdfName || "generated_qr_code_pdf.pdf"); // Use the extracted PDF name
+      link.setAttribute("download", pdfName || "generated_qr_code_pdf.pdf");
 
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link); // Clean up the link after clicking
+      document.body.removeChild(link);
       setMessage("PDF downloaded successfully!");
     } else {
       setMessage("No PDF available for download.");
