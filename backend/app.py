@@ -61,8 +61,8 @@ def add_qr_code_to_pdf(pdf, qr_img, code_text, helpline_text, icon_path):
     temp_file = 'temp_qr_code.png'
     qr_img.save(temp_file, format='PNG')
 
-    div_width = 50
-    div_height = 70
+    div_width = 60
+    div_height = 80
     page_width = 210
     page_height = 297
     x = (page_width - div_width) / 2
@@ -72,12 +72,12 @@ def add_qr_code_to_pdf(pdf, qr_img, code_text, helpline_text, icon_path):
     pdf.set_draw_color(200, 200, 200)
     pdf.rect(x, y, div_width, div_height)
 
-    qr_size = 45
+    qr_size = 53
     qr_x = x + (div_width - qr_size) / 2
     qr_y = y + 1
     pdf.image(temp_file, x=qr_x, y=qr_y, w=qr_size, h=qr_size)
 
-    pdf.set_font('Arial', '', 21)
+    pdf.set_font('Arial', '', 25)
     pdf.set_xy(x, qr_y + qr_size - 2.5)
     pdf.cell(w=div_width, h=8, txt=code_text, border=0, ln=1, align='C')
 
@@ -85,7 +85,7 @@ def add_qr_code_to_pdf(pdf, qr_img, code_text, helpline_text, icon_path):
     instruction_text_2 = "bit.ly/oasiscb24"
     instruction_text_3 = "coupon code to avail cashback."
 
-    instruction_border_padding = 2
+    instruction_border_padding = 5
     instruction_width = div_width - instruction_border_padding * 2
     instruction_height = 5
     instruction_x = x + instruction_border_padding
@@ -112,12 +112,12 @@ def add_qr_code_to_pdf(pdf, qr_img, code_text, helpline_text, icon_path):
     pdf.cell(w=instruction_width - 2, h=4, txt=instruction_text_3, border=0, align='C')
 
     pdf.set_xy(x + 2, instruction_y + instruction_height + 13)
-    pdf.set_font('Arial', '', 7)
+    pdf.set_font('Arial', '', 8)
 
     helpline_y = pdf.get_y()
-    whatsapp_icon_height = 3
-    whatsapp_icon_width = 3
-    pdf.add_whatsapp_icon(x + 4, helpline_y - 3.5, icon_path, whatsapp_icon_width, whatsapp_icon_height)
+    whatsapp_icon_height = 3.5
+    whatsapp_icon_width = 3.5
+    pdf.add_whatsapp_icon(x + 6, helpline_y - 3.5, icon_path, whatsapp_icon_width, whatsapp_icon_height)
 
     pdf.set_xy(x + whatsapp_icon_width + 0, helpline_y)
     pdf.cell(w=div_width - 4, h=-4, txt=helpline_text, border=0, ln=1, align='C')
