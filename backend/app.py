@@ -85,9 +85,9 @@ def add_qr_code_to_pdf(pdf, qr_img, code_text, helpline_text, icon_path):
     instruction_text_2 = "bit.ly/oasiscb24"
     instruction_text_3 = "coupon code to avail cashback."
 
-    instruction_border_padding = 5
+    instruction_border_padding = 4.5
     instruction_width = div_width - instruction_border_padding * 2
-    instruction_height = 5
+    instruction_height = 5.5
     instruction_x = x + instruction_border_padding
     instruction_y = pdf.get_y()
 
@@ -95,19 +95,19 @@ def add_qr_code_to_pdf(pdf, qr_img, code_text, helpline_text, icon_path):
     pdf.set_draw_color(0, 0, 0)
     pdf.rounded_rect(instruction_x, instruction_y, instruction_width, instruction_height + 8, 2)
 
-    pdf.set_font('Arial', '', 8)
+    pdf.set_font('Arial', '', 9)
     pdf.set_xy(instruction_x + 1, instruction_y + 1)
     pdf.cell(w=instruction_width - 2, h=4, txt=instruction_text_1, border=0, align='C')
 
-    pdf.set_font('Arial', 'B', 8)
+    pdf.set_font('Arial', 'B', 9)
     pdf.set_xy(instruction_x + 1, instruction_y + 5)
     pdf.cell(w=instruction_width - 20, h=4, txt=instruction_text_2, border=0, align='C')
 
-    pdf.set_font('Arial', '', 8)
-    pdf.set_xy(instruction_x + 2, instruction_y + 5)
+    pdf.set_font('Arial', '', 9)
+    pdf.set_xy(instruction_x + 4, instruction_y + 5)
     pdf.cell(w=instruction_width + 17, h=4, txt=" and enter the", border=0, align='C')
 
-    pdf.set_font('Arial', '', 8)
+    pdf.set_font('Arial', '', 9)
     pdf.set_xy(instruction_x + 1, instruction_y + 9)
     pdf.cell(w=instruction_width - 2, h=4, txt=instruction_text_3, border=0, align='C')
 
