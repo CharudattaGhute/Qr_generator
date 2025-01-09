@@ -1,1 +1,1 @@
-u# Qr_generatot
+u# Qr_generator
